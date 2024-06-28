@@ -41,7 +41,7 @@ with st.form(key = 'information', clear_on_submit=True):
             'Budget': [budget],
             'Duration': [duration],
             'Num_Screens': [num_screens],
-            'Marketing_Spend':[marketing_spend]',
+            'Marketing_Spend':[marketing_spend],
             'Social_Media_Buzz': [social_media],
             'Genre_Action': [genres['Action']],
             'Genre_Comedy': [genres['Comedy']]
