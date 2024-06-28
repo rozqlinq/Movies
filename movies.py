@@ -51,7 +51,15 @@ with st.form(key = 'information', clear_on_submit=True):
             'Genre_Sci-Fi': genres['Sci-Fi']
         })
         prediction = pickled_model.predict(data)
-        st.balloons()
+
+        if prediction[0]=0:
+                    result = 'Low'
+        elif prediction[0]=1:
+                    result = 'Medium'
+        elif prediction[0]=2:
+                    result = 'High'
+
+
         st.success(f"Predicted Probability: {prediction[0]:,.2f}",icon="✅")
 
 
