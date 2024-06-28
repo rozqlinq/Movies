@@ -63,8 +63,7 @@ with st.form(key = 'information', clear_on_submit=True):
                     result = 'High'
 
 
-        st.success(f"Predicted Probability: result")
-
+        st.success(f"Predicted Probability: :{result}")
 
 
 
