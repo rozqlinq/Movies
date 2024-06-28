@@ -51,7 +51,10 @@ with st.form(key = 'information', clear_on_submit=True):
             'Genre_Sci-Fi': genres['Sci-Fi']
         })
         prediction = pickled_model.predict(data)
+     
 
+
+        result = ''
         if prediction[0]==0:
                     result = 'Low'
         elif prediction[0]==1:
