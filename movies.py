@@ -9,6 +9,8 @@ from sklearn.linear_model import LinearRegression
 from sklearn import metrics
 matplotlib.use('tkagg')
 
+pickled_model = pickle.load(open('movies_classifier_model.pkl', 'rb'))
+
 # APP INTERFACE
 st.set_page_config(layout='centered')
 
@@ -47,7 +49,7 @@ with st.form(key = 'information', clear_on_submit=True):
             'Genre_Horror': [genres['Horror']]
             'Genre_Sci-Fi': [genres['Sci-Fi']]
         })
-        prediction = lm.predict(data)
+        prediction = pickled_model.predict(data)
         st.balloons()
         st.success(f"Predicted Probability: {prediction[0]:,.2f}",icon="✅")
 
