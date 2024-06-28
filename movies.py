@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn import metrics
-matplotlib.use('tkagg')
+
 
 pickled_model = pickle.load(open('movies_classifier_model.pkl', 'rb'))
 
