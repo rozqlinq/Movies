@@ -55,11 +55,11 @@ with st.form(key = 'information', clear_on_submit=True):
 
 
         result = ''
-        if prediction[0]==0:
+        if prediction[0]==0.0:
                     result = 'Low'
-        elif prediction[0]==1:
+        elif prediction[0]==1.0:
                     result = 'Medium'
-        elif prediction[0]==2:
+        elif prediction[0]==2.0:
                     result = 'High'
 
 
