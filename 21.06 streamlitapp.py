@@ -9,61 +9,48 @@ from sklearn.linear_model import LinearRegression
 from sklearn import metrics
 matplotlib.use('tkagg')
 
-adm = pd.read_csv('/Users/rozalina.alkeyeva/Desktop/adm_data.csv')
-
-# CHECKING NAN
-has_nan = adm.isnull().sum()
-
-# CONVERTING GPA VALUES
-new_gpa = []
-
-for i in range (len(adm['CGPA'])):
-    new_gpa.append((adm['CGPA'][i]/10)*4)
-
-adm['CGPA']=new_gpa
-
-# TRAINING MODEL
-X = adm.drop(["Serial No.", "Chance of Admit "], axis=1)
-Y = adm['Chance of Admit ']
-
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.3, random_state=101)
-
-lm=LinearRegression()
-lm.fit(X_train, Y_train)
-
 # APP INTERFACE
 st.set_page_config(layout='centered')
 
-st.title('University Admissions Predictor')
-st.write("""Welcome to University Admissions Predictor app!
-            This app predicts your chances of admission to an university
-            Please enter the information about your application package required below""")
+st.title('Movie Box Office Success Predictor')
+st.write("""Welcome to Movie Box Office Success Predictor app!
+            bla bla bla""")
+
+categories = {'AAA': 3, 'A': 2, 'B': 1, 'C':0}
 
 with st.form(key = 'information', clear_on_submit=True):
-    gre_score = st.number_input('Enter your GRE score')
-    toefl_score = st.number_input('Enter your TOEFL score')
-    uni_rating = st.selectbox('Enter the Rating of the University you are applying to', [1,2,3,4,5])
-    sop = st.selectbox('Enter the approximate Strength of your Statement of Purpose', [1,1.5,2,2.5,3,3.5,4,4.5,5])
-    lor = st.selectbox('Enter the approximate Strength of your Letter of Recommendation',
-                       [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5])
-    cgpa = st.number_input('Enter your CGPA score')
-    ra = st.selectbox('Do you have Resesarch Experirnce? (0 for No and 1 for Yes)', [0,1])
+    budget = st.number_input('Enter approximate BUDGET of your movie (in $ mln)')
+    marketing_spend = st.number_input('Enter approximate MARKETING SPEND of your movie (in $ mln)')
+    duration = st.number_input('Enter approximate DURATION of your movie (in min)')
+    social_media = st.number_input('Enter approximate score of SOCIAL MEDIA BUZZ of your movie (out of 100)')
+    num_screens = st.number_input('Enter approximate NUMBER OF SCREENS of your movie')
+    mov_cat = st.selectbox('Enter CATEGORY of your movie',
+                       ['AAA','A', 'B', 'C'])
+    genre = st.selectbox('Enter GENRE of your movie',
+                       ['Drama','Horror', 'Action', 'Sci-Fi', 'Comedy'])
 
-# PREDICTION
-if st.form_submit_button('Predict'):
-    data = pd.DataFrame({
-        'GRE Score': [gre_score],
-        'TOEFL Score': [toefl_score],
-        'University Rating': [uni_rating],
-        'SOP': [sop],
-        'LOR': [lor],
-        'CGPA': [cgpa],
-        'Research': [ra]
-    })
+    genres = {'Action': False, 'Comedy': False, 'Drama': False, 'Horror':False, 'Sci-Fi':False}
+    genres[genre] = True
+    
+    # PREDICTION
+    if st.form_submit_button('Predict'):
+        data = pd.DataFrame({
+            'Movie_Category': categories[mov_cat],
+            'Budget': [budget],
+            'Duration': [duration],
+            'Num_Screens': [num_screens],
+            'Marketing_Spend':[marketing_spend]',
+            'Social_Media_Buzz': [social_media],
+            'Genre_Action': [genres['Action']],
+            'Genre_Comedy': [genres['Comedy']]
+            'Genre_Drama': [genres['Drama']]
+            'Genre_Horror': [genres['Horror']]
+            'Genre_Sci-Fi': [genres['Sci-Fi']]
+        })
+        prediction = lm.predict(data)
+        st.balloons()
+        st.success(f"Predicted Probability: {prediction[0]:,.2f}",icon="✅")
 
-prediction = lm.predict(data)
 
-st.balloons()
-st.success(f"Predicted Probability: {prediction[0]:,.2f}",icon="✅")
 
 
