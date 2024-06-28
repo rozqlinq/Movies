@@ -54,9 +54,9 @@ with st.form(key = 'information', clear_on_submit=True):
         prediction = pickled_model.predict(data)
      
 
-        if prediction[0]==0.0:
+        if prediction[0]==12.0:
                     result = 'Low'
-        elif prediction[0]==1.0:
+        elif prediction[0]==13.0:
                     result = 'Medium'
         else:
                     result = 'High'
