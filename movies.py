@@ -14,7 +14,7 @@ pickled_model = pickle.load(open('movies_classifier_model.pkl', 'rb'))
 
 # APP INTERFACE
 st.set_page_config(layout='centered')
-st.image('movie.jpg', width=400)
+st.image('movie.jpg', width=800)
 
 st.title('Movie Box Office Success Predictor')
 st.write("""Welcome to Movie Box Office Success Predictor app!
