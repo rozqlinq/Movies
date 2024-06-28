@@ -43,11 +43,11 @@ with st.form(key = 'information', clear_on_submit=True):
             'Num_Screens': [num_screens],
             'Marketing_Spend':[marketing_spend],
             'Social_Media_Buzz': [social_media],
-            'Genre_Action': [genres['Action']],
-            'Genre_Comedy': [genres['Comedy']]
-            'Genre_Drama': [genres['Drama']]
-            'Genre_Horror': [genres['Horror']]
-            'Genre_Sci-Fi': [genres['Sci-Fi']]
+            'Genre_Action': genres['Action'],
+            'Genre_Comedy': genres['Comedy'],
+            'Genre_Drama': genres['Drama'],
+            'Genre_Horror': genres['Horror'],
+            'Genre_Sci-Fi': genres['Sci-Fi']
         })
         prediction = pickled_model.predict(data)
         st.balloons()
