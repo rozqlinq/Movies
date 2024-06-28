@@ -18,7 +18,7 @@ st.image('movie.jpg', width=700)
 
 st.title('Movie Box Office Success Predictor')
 st.write("""Welcome to Movie Box Office Success Predictor app!
-            bla bla bla""")
+            """)
 
 categories = {'AAA': 3, 'A': 2, 'B': 1, 'C':0}
 
