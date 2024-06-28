@@ -35,7 +35,7 @@ with st.form(key = 'information', clear_on_submit=True):
     genres = {'Action': False, 'Comedy': False, 'Drama': False, 'Horror':False, 'Sci-Fi':False}
     genres[genre] = True
             
-    result = ''
+    bos = {'0': 'Low','1': 'Medium', '2': 'High' }
     # PREDICTION
     if st.form_submit_button('Predict'):
         data = pd.DataFrame({
@@ -52,10 +52,11 @@ with st.form(key = 'information', clear_on_submit=True):
             'Genre_Sci-Fi': genres['Sci-Fi']
         })
         prediction = pickled_model.predict(data)
-     
+
+    
 
 
-        st.success(f"Predicted Probability: :{prediction[0]}", icon="✅")
+        st.success(f"Predicted Probability: {bos[str(prediction[0])]}", icon="✅")
 
 
 
